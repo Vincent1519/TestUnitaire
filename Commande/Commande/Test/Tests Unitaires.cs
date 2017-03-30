@@ -52,5 +52,22 @@ namespace GestionCommande.Test
             Assert.AreEqual(Test, controleur.GetCommandes().Last().Client);
             Assert.AreEqual(Listecommand, controleur.GetCommandes().Last().LignesCommande);
         }
+
+        [TestMethod]
+        public void TestClientNoCommande()
+        {
+            Controleur controleur = new CommandeControleur();
+            Client Test = new Client();
+            Test.Nom = "Minhoto";
+            Test.Prenom = "Theo";
+            Test.Mail = "Minhoto.theo@gmail.com";
+            List<LigneCommande> Listecommand = new List<LigneCommande>();
+            Listecommand.Add(new LigneCommande() { Produit = controleur.GetProduits().First(), Quantite = 2 });
+            List<LigneCommande> ListCommandVide = new List<LigneCommande>();
+
+            Assert.AreEqual(Test, controleur.GetCommandes().Last().Client);
+            Assert.AreNotEqual(ListCommandVide, controleur.GetCommandes().Last().LignesCommande);
         }
+        }
+
 }
